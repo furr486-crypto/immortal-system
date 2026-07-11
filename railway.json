@@ -1,1 +1,19 @@
-
+{
+  "build": {
+    "builder": "DOCKERFILE"
+  },
+  "deploy": {
+    "startCommand": "/usr/local/bin/entrypoint.sh",
+    "restartPolicyType": "ALWAYS",
+    "restartPolicyMaxRetries": 9999,
+    "healthcheckPath": "/health",
+    "healthcheckTimeout": 600,
+    "healthcheckInterval": 60
+  },
+  "env": {
+    "IMMORTAL_MODE": "ULTIMATE",
+    "GITHUB_TOKEN": "github_pat_xxxx",
+    "BACKUP_REPO": "https://github.com/thaipuri/immortal-backup.git",
+    "CLOUD_TOKENS": "token1,token2,token3"
+  }
+}
