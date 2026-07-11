@@ -1,1 +1,20 @@
+# Predictive check tiap 2 menit
+*/2 * * * * root /usr/local/bin/oracle.sh >> /var/log/oracle.log 2>&1
 
+# Guardian loop (5 menit)
+*/5 * * * * root /usr/local/bin/guardian.sh >> /var/log/guardian.log 2>&1
+
+# Backup tiap 4 jam
+0 */4 * * * root /usr/local/bin/backup-daemon.sh >> /var/log/backup-daemon.log 2>&1
+
+# Full phoenix rebuild tiap hari jam 2 pagi
+0 2 * * * root /usr/local/bin/phoenix.sh --force >> /var/log/phoenix.log 2>&1
+
+# Necromancer resurrection tiap 5 menit
+*/5 * * * * root /usr/local/bin/necromancer.sh >> /var/log/necromancer.log 2>&1
+
+# Hydra failover tiap 10 menit
+*/10 * * * * root /usr/local/bin/hydra.sh >> /var/log/hydra.log 2>&1
+
+# Auto update tiap minggu
+0 0 * * 0 root apt update && apt upgrade -y
